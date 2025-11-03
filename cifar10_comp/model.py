@@ -31,20 +31,23 @@ class SimpleCNN(nn.Module):
         # Feature extraction layers
         self.features = nn.Sequential(
             # Block 1
-            nn.Conv2d(3, 32, kernel_size=3, padding=1),  # 32x32x3 -> 32x32x32
+            nn.Conv2d(32, 32, kernel_size=3, padding=1),  # 32x32x3 -> 32x32x32
             nn.ReLU(inplace=True),
-            # TODO: Add BatchNorm here? nn.BatchNorm2d(32)
+            # TODO: Add BatchNorm here? 
+            nn.BatchNorm2d(32),
             nn.MaxPool2d(2),  # 32x32x32 -> 16x16x32
 
             # Block 2
             nn.Conv2d(32, 64, kernel_size=3, padding=1),  # 16x16x32 -> 16x16x64
             nn.ReLU(inplace=True),
+            nn.BatchNorm2d(64),
             # TODO: Add BatchNorm here?
             nn.MaxPool2d(2),  # 16x16x64 -> 8x8x64
 
             # Block 3
             nn.Conv2d(64, 128, kernel_size=3, padding=1),  # 8x8x64 -> 8x8x128
             nn.ReLU(inplace=True),
+            nn.BatchNorm2d(128),
             # TODO: Add BatchNorm here?
             nn.AdaptiveAvgPool2d((1, 1))  # 8x8x128 -> 1x1x128
 
